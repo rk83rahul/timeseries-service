@@ -1,6 +1,6 @@
 # timeseries-service
 
-The timeseries-service is an API service that implements the TrendMiner Connector API to provide time series data.
+The timeseries-service is an API service that implements the [TrendMiner Connector API](https://developer.trendminer.com/connector-api/) to provide time series data.
 The application has four API endpoints that provide relevant time series data to TrendMiner.
 
 #### API Endpoints:
