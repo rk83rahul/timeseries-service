@@ -3,13 +3,15 @@
 The timeseries-service is an API service that implements the TrendMiner Connector API to provide time series data.
 The application has four API endpoints that provide relevant time series data to TrendMiner.
 
-This project uses the Quarkus Framework.
-If you want to learn more about Quarkus, you can visit its website: https://quarkus.io/
+#### API Endpoints:
 
 * GET /api/version
 * GET /api/database
 * GET /api/v2/tags
 * GET /api/v2/tags/indexvalues
+
+This project uses the Quarkus Framework.
+If you want to learn more about Quarkus, you can visit its website: https://quarkus.io/
 
 ## Getting Started
 Follow the instructions below to get started.
