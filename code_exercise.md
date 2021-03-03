@@ -65,7 +65,7 @@ Build a REST API service that returns a list of tag metadata based on the docume
 
 ### How to submit your solution
 - Do not fork the timeseries-service repository on GitHub or submit a pull request directly, as that would make your solution public for others to see. Instead, clone the repo and work locally on it.
-- When done, squash your work into a single commit and use `git format-patch` to generate a patch file.
+- When done, squash your work into a single commit and use `git format-patch` to generate a patch file. Email the patch file to us as your work sample submission. If you prefer to provide a GitHub's private gist or do your work in a private repo and add us to it, that's also totally fine
 
 ## Built with
 
