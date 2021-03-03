@@ -1,7 +1,8 @@
 ## Support for retrieving tag metadata in `timeseries-service` 
 
 We would like to provide industrial analytics to our users using a third party product called TrendMiner. 
-To enable this feature we need to implement an API to provide data to the third party. One of the required services must return tag metadata. 
+To enable this feature we need to implement an API to provide data to the third party. One of the required services must return tag metadata.
+Our [`timeseries-service`](https://github.com/YaraCG/timeseries-service) is the API service that implements these endpoints.
 
 ### Request
  
