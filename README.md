@@ -17,20 +17,22 @@ Follow the instructions below to get started.
 ### Prerequisites
 - Java 11
 
-### Building
-```shell script
-./gradlew build
-```
 ### Running locally
 You can run the application locally dev mode that enables live coding using:
 ```shell script
 ./gradlew quarkusDev
 ```
 
-## Running the tests
+### Running the tests
 ```shell script
 ./gradlew test
 ```
+
+### Building
+```shell script
+./gradlew build
+```
+
 It produces the `time-series-service-0.0.1-runner.jar` file in the `/build` directory.
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `build/lib` directory.
 
