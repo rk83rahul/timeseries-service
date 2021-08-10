@@ -1,0 +1,47 @@
+﻿Area;Plant; Section ;System; Location; Generic_name;Object_type
+Nitric Acid;SSB;Feed section;Ammonia evaporation;GLO-SSB-M-12_VAG0021;Demister NH3 feed;Demister
+Nitric Acid;SSB;Feed section;Ammonia evaporation;GLO-SSB-M-12_H020;Superheater;Heat exchanger
+Nitric Acid;SSB;Feed section;Ammonia evaporation;GLO-SSB-M-12_H010;NH3 Evaporator;Heat exchanger
+Nitric Acid;SSB;Feed section;Ammonia evaporation;GLO-SSB-M-12_LAG0022; Gasseous NH3 filter;Filter
+Nitric Acid;SSB;Feed section;Ammonia evaporation;GLO-SSB-M-12_HAG0002;NH3 Heater DeNOX;Heat exchanger
+Nitric Acid;SSB;Feed section;Air intake;GLO-SSB-M-14_L015;Air filter;Filter
+Nitric Acid;SSB;Feed section;Air intake;GLO-SSB-M-14_H020;Primary Air cooler ;Heat exchanger
+Nitric Acid;SSB;Feed section;Air intake;GLO-SSB-M-14_H030;Secondary Air cooler;Heat exchanger
+Nitric Acid;SSB;Mixing and reaction;Air/Ammonia mixing;GLO-SSB-M-14_BAA0002;Mixer;Mixer
+Nitric Acid;SSB;Mixing and reaction;Mixed gas filters;GLO-SSB-M-14_L040;NH3 Filter;Filter
+Nitric Acid;SSB;Mixing and reaction;Burner;GLO-SSB-M-16_F010;Burner;Burner
+Nitric Acid;SSB;Steam system;Boiler;GLO-SSB-M-26_F010;Boiler;Boiler
+Nitric Acid;SSB;Steam system;Boiler;GLO-SSB-M-16_H050;Economizer;Heat exchanger
+Nitric Acid;SSB;Steam system;Boiler water side;GLO-SSB-M-24_H050;Boiler feedwater pre-heeater 1;Heat exchanger
+Nitric Acid;SSB;Steam system;Boiler water side;GLO-SSB-M-24_H060;Boiler feedwater pre-heeater 2;Heat exchanger
+Nitric Acid;SSB;Process gas cooling;LP section;GLO-SSB-M-18_H015;Cooler Condenser;Heat exchanger
+Nitric Acid;SSB;Process gas cooling;LP section;GLO-SSB-M-20_P130;Weak acid pump 1;Pump
+Nitric Acid;SSB;Process gas cooling;LP section;GLO-SSB-M-20_P140;Weak acid pump 2;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_V010;Absorption tower 1;Absorption tower
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_V020;Absorption tower 2;Absorption tower
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P100;Acid recirculation pump 1;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P110;Acid recirculation pump 2;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P070;Product Acid pump 1;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P080;Product Acid pump 2;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P050;Process Water Pump 1 ;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P060;Process Water Pump 2;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_P120;Acid spillage pump ;Pump
+Nitric Acid;SSB;Absorption and bleaching;Absorption tower;GLO-SSB-M-20_T150;Acid spillage tank;Tank
+Nitric Acid;SSB;Absorption and bleaching;Bleacher;GLO-SSB-M-17_V010;Bleacher;Bleacher
+Nitric Acid;SSB;Tailgas section;Tail gas heat pre-heating ;GLO-SSB-M-22_H010;Tail gas heater 1;Heat exchanger
+Nitric Acid;SSB;Tailgas section;Tail gas heat pre-heating ;GLO-SSB-M-22_H020;Tail gas heater 2;Heat exchanger
+Nitric Acid;SSB;Tailgas section;DeNox reactor;GLO-SSB-M-14_V200;DeNox reactor;DeNox reactor
+Nitric Acid;SSB;Compressor train;Air compressor;GLO-SSB-M-14_K010;Air Compressor;Compressor
+Nitric Acid;SSB;Compressor train;Steam turbine;GLO-SSB-M-14_R010;Steam turbine;Turbine
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_HLO0001;Oil cooler;Heat exchanger
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_RLO0001; Oil filter ;Filter
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_VLO0001;Spillage oil tank;Tank
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_PLO0001;Oilpump 1;Pump
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_PLO0002;Oilpump 2;Pump
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_V050;Oil tank;Tank
+Nitric Acid;SSB;Compressor train;Oil and sealing systems;GLO-SSB-M-14_PL00001;Spare oil pump;Pump
+Nitric Acid;SSB;Compressor train;Gir;GLO-SSB-M-14_G000001;Compressor gear;Gear
+Nitric Acid;SSB;Compressor train;Electrical Motor;GLO-SSB-E-14_E010;Compressor el motor;El.motor
+Nitric Acid;SSB;Other ;Stack;GLO-SSB-M-22_ONO0078;Stack;Stack
+Nitric Acid;SSB;Other;INSTRUMENT AIR SUPPLY / DISTRIBUTION SYSTEM;SSB-M-14_VA00093;Valve Accumulator tank;Pressure tank
+Nitric Acid;SSB;Other;WATER TREATMENT SYSTEM - DEMIN WATER;SSB-M-26_V170;Process water tank;Tank
