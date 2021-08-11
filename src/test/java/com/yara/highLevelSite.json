@@ -1,0 +1,142 @@
+{
+  "country": "Norway",
+  "name": "Glomfjord",
+  "yprid": "GLO",
+  "dcs": [
+    {
+      "name": "ABB",
+      "objects": {
+        "AnalogInput": [
+          {
+            "_type": "com.yara.dpp.domain.control.base.AnalogInput",
+            "description": "Temperatur Matevannstank",
+            "name": "TI514/2:Control Module:Y",
+            "tag": "TI514",
+            "timestamp": 1605609425.692751000,
+            "unit": "Gr.C",
+            "forced": false,
+            "fault": false,
+            "alarms": {
+              "_type": ".SignalAlarms",
+              "blocked": false,
+              "suppressed": false,
+              "alarms": [
+                {
+                  "_type": ".AlarmOnLimit",
+                  "limitType": "high",
+                  "limit": 85.0,
+                  "active": false,
+                  "enabled": true,
+                  "name": "high"
+                },
+                {
+                  "_type": ".AlarmOnLimit",
+                  "limitType": "highHigh",
+                  "limit": 90.0,
+                  "active": false,
+                  "enabled": true,
+                  "name": "highHigh"
+                },
+                {
+                  "_type": ".AlarmOnLimit",
+                  "limitType": "low",
+                  "limit": -999999.0,
+                  "active": false,
+                  "enabled": false,
+                  "name": "low"
+                },
+                {
+                  "_type": ".AlarmOnLimit",
+                  "limitType": "lowLow",
+                  "limit": -999999.0,
+                  "active": false,
+                  "enabled": false,
+                  "name": "lowLow"
+                }
+              ]
+            },
+            "range": {
+              "min": 0.0,
+              "max": 150.0
+            },
+            "highLevel": {
+              "id": "7F.38213/node2"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "areas": [
+    {
+      "name": "Nitric Acid",
+      "plants": [
+        {
+          "id": "SSB",
+          "name": "SSB",
+          "tagPrefix": "SB",
+          "units": [
+            {
+              "name": "Feed section",
+              "modules": [
+                {
+                  "name": "Ammonia evaporation",
+                  "id": "AE",
+                  "modules": [
+                    {
+                      "name": "Vanntank Test feed",
+                      "id": "GLO-SSB-M-14_H030",
+                      "type": "tank",
+                      "nodesEdges": [
+                        {
+                          "pAndId": "7F.38213",
+                          "elementId": "node1"
+                        }
+                      ],
+                      "sharedModules": [
+                        {
+                          "id": "7F.38213/edge1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "modules": [
+            {
+              "id": "7F.38213/edge1",
+              "name": "SSB-M-14_OA00003",
+              "type": "pipe",
+              "controls": {
+                "owned": [
+                  {
+                    "id": "7F.38213/node2",
+                    "name": "TI514",
+                    "nodesEdges": [
+                      {
+                        "pAndId": "7F.38213",
+                        "elementId": "node2"
+                      }
+                    ],
+                    "type": "instrument"
+                  }
+                ],
+                "order": [
+                  "7F.38213/node2"
+                ]
+              },
+              "nodesEdges": [
+                {
+                  "pAndId": "7F.38213",
+                  "elementId": "edge1"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
