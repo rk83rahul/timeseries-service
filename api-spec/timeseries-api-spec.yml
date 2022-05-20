@@ -14,7 +14,6 @@ paths:
     post:
       tags:
         - Create time series
-      summary: Create a new time series.
       operationId: createTimeSeries
       description: Allows you to create a time series and time series data.
       x-amazon-apigateway-integration:
