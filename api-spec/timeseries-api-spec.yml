@@ -121,8 +121,8 @@ paths:
                 $ref: "#/components/schemas/TimeSeriesData"
     get:
       tags:
-        - List time series data
-      summary: List data points associated with a time series
+        - Time Series
+      summary: List data points
       operationId: getTimeSerieData
       description: Returns a list of all available data points for a specific time series.
       x-amazon-apigateway-integration:
@@ -227,8 +227,8 @@ paths:
   /timeseries/{timeseries_id}/aggregates:
     get:
       tags:
-        - List time series aggregates
-      summary: List aggregated values for a time series.
+        - Time Series
+      summary: List data point aggregates
       operationId: getTimeSerieAggregates
       description: Returns a list aggregated valuse for a specific time series.
       x-amazon-apigateway-integration:
