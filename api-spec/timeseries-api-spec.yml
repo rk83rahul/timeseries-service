@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Time Series API
+  title: Time Series
   description: Time Series API
   version: 1.0.0
   contact:
@@ -13,7 +13,7 @@ paths:
   /timeseries:
     post:
       tags:
-        - Create time series
+        - Time Series
       operationId: createTimeSeries
       description: Allows you to create a time series and time series data.
       x-amazon-apigateway-integration:
@@ -33,7 +33,7 @@ paths:
                 $ref: "#/components/schemas/TimeSeries"
     get:
       tags:
-        - List time series
+        - Time Series
       summary: List all time series metadata.
       operationId: getTimeSeries
       description: Returns a list of all available time series metadata.
@@ -99,7 +99,7 @@ paths:
           type: string
     post:
       tags:
-        - Create time series data
+        - Time Series
       summary: Add data points to a time series.
       operationId: createTimeSeriesData
       description: Allows you to add data points to an exsisting time series.
