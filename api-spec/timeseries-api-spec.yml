@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Time Series API
-  description: Timeseries API
+  description: Time Series API
   version: 1.0.0
   contact:
     name: "Digital Production Platform API"
@@ -11,9 +11,30 @@ servers:
   - url: 'https://api.cof.dpp.yara.com'
 paths:
   /timeseries:
+    post:
+      tags:
+        - Create time series
+      summary: Create a new time series.
+      operationId: createTimeSeries
+      description: Allows you to create a time series and time series data.
+      x-amazon-apigateway-integration:
+        "$ref": "#/components/x-amazon-apigateway-integrations/TimeSeriesSiteServiceLambdaIntegration"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TimeSeriesPost"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TimeSeries"
     get:
       tags:
-        - Time Series
+        - List time series
       summary: List all time series metadata.
       operationId: getTimeSeries
       description: Returns a list of all available time series metadata.
@@ -70,10 +91,38 @@ paths:
         '415':
           description: Unsupported media type.
   /timeseries/{timeseries_id}/data:
+    parameters:
+      - name: timeseries_id
+        in: path
+        description: The unique identifier of the timeseries, from which you want to read data points.
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - Create time series data
+      summary: Add data points to a time series.
+      operationId: createTimeSeriesData
+      description: Allows you to add data points to an exsisting time series.
+      x-amazon-apigateway-integration:
+        "$ref": "#/components/x-amazon-apigateway-integrations/TimeSeriesSiteServiceLambdaIntegration"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TimeSeriesDataPointsPost"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TimeSeriesData"
     get:
       tags:
-        - Time Series Data
-      summary: List all data points for a specific time series.
+        - List time series data
+      summary: List data points associated with a time series
       operationId: getTimeSerieData
       description: Returns a list of all available data points for a specific time series.
       x-amazon-apigateway-integration:
@@ -84,6 +133,8 @@ paths:
           required: false
           description: Restrict results to production sites specified by a comma-separated list of site IDs.
           example: 'POR,SLU,GLO'
+          schema:
+            type: string
         - in: path
           name: timeseries_id
           description: The unique identifier of the timeseries, from which you want to read data points.
@@ -146,6 +197,8 @@ paths:
           name: resolution
           description: The time interval over which to aggregate data. Supported values are 1m, 1h, 1d. Required when specifying 'aggregation_types'.
           example: '1h'
+          schema:
+            type: string
         - in: query
           name: pagination_token
           description: Used to move forward "pages", based on the value of next_token in the response. The value provided must be pulled directly from the response provided by the API, and must not be modified.
@@ -174,7 +227,7 @@ paths:
   /timeseries/{timeseries_id}/aggregates:
     get:
       tags:
-        - Time Series Aggregates
+        - List time series aggregates
       summary: List aggregated values for a time series.
       operationId: getTimeSerieAggregates
       description: Returns a list aggregated valuse for a specific time series.
@@ -188,13 +241,6 @@ paths:
           required: true
           schema:
             type: string
-        - in: query
-          name: site_ids
-          required: false
-          schema:
-            type: string
-          description: Restrict results to production sites specified by a comma-separated list of site IDs.
-          example: 'POR,SLU,GLO'
         - in: query
           name: start_time
           description: The UTC start timestamp of the requested timeframe from which the time series data will be provided. Timestamp in second granularity and inclusive (e.g., 12:00:01 includes the first second of the minute). Timestamp is formatted in YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339).
@@ -335,11 +381,58 @@ components:
         data:
           items:
             $ref: '#/components/schemas/Tag'
+    TimeSeriesPost:
+      type: object
+      required:
+        - name
+        - data_type
+        - unit
+        - asset_id
+        - created_by
+      properties:
+        name:
+          description: The name of the time series.
+          example: 'Pump A temperature'
+        description:
+          description: The description of the time series.
+          example: 'The temperature of pump A in GLO.'
+        unit:
+          type: string
+          description: The unit of the time series metric.
+          example: 'degree celsius'
+        data_type:
+          type: string
+          enum:
+            - string
+            - boolean
+            - integer
+            - double
+          description: The data type of the time series. Supported values are boolean, double, integer, and string.
+          example: 'double'
+        asset_id:
+          description: The Asset ID of equipment related to this time series.
+          example: '03c69baa-c091-11ec-9d64-0242ac120002'
+        created_by:
+          description: The name of the product area creating the time series.
+          example: 'Production Optimization'
+        metadata:
+          type: object
+          description: Key-value pairs of information that you can attach to the object. This can be useful for storing additional information about the object in a structured format. E.g. tag names used for this time series, application/product this time series belongs to, etc.
+          additionalProperties:
+            type: string
+    TimeSeriesDataPointsPost:
+      type: object
+      required:
+        - data_points
+      properties:
+        data_points:
+          description: The list of data points to add to this this time series.
+          items:
+            $ref: "#/components/schemas/DataPoint"
     TimeSeriesData:
       type: object
       required:
         - id
-        - unit
         - data_points
         - metadata
       properties:
@@ -367,58 +460,19 @@ components:
         - quality
         - time
         - value
-        - min
-        - max
-        - average
-        - count
-        - sum
-        - standard_deviation
       properties:
         time:
           type: string
           description: The UTC timestamp of the data point formatted in YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339).
-          required: true
           format: date-time
           example: '2021-08-29T09:12:33.001Z'
         quality:
           type: string
-          required: true
           description: The quality of the time series data point. Valid valid are GOOD, BAD, UNCERTAIN
           example: GOOD
         value:
           type: string
-          required: false
           description: The value of the measurement.
-          example: ' 7.0'
-        min:
-          type: string
-          required: false
-          description: The minimum value of the time series over a time interval window.
-          example: ' 7.0'
-        max:
-          type: string
-          required: false
-          description: The maximum value of the time series over a time interval window.
-          example: ' 7.0'
-        average:
-          type: string
-          required: false
-          description: The average value of the time series over a time interval window.
-          example: ' 7.0'
-        count:
-          type: string
-          required: false
-          description: The count of data points in the time series over a time interval window.
-          example: ' 7.0'
-        sum:
-          type: string
-          required: false
-          description: The sum of the time series over a time interval window.
-          example: ' 7.0'
-        standard_deviation:
-          type: string
-          required: false
-          description: The standard deviation of the time series over a time interval window..
           example: ' 7.0'
     TimeSeriesAggregatedData:
       type: object
@@ -440,7 +494,16 @@ components:
           type: string
           description: The data type of the value returned in the data points.
           example: 'Double'
-        data_points:
+        time:
+          type: string
+          description: The UTC timestamp of the data point formatted in YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339).
+          format: date-time
+          example: '2021-08-29T09:12:33.001Z'
+        quality:
+          type: string
+          description: The quality of the time series data point. Valid valid are GOOD, BAD, UNCERTAIN
+          example: GOOD
+        value:
           description: An array containing the actual time series data points response.
           items:
             $ref: "#/components/schemas/AggregatedDataPoint"
@@ -458,45 +521,28 @@ components:
         - sum
         - standard_deviation
       properties:
-        time:
-          type: string
-          description: The UTC timestamp of the data point formatted in YYYY-MM-DDTHH:mm:ssZ (ISO 8601/RFC 3339).
-          required: true
-          format: date-time
-          example: '2021-08-29T09:12:33.001Z'
-        quality:
-          type: string
-          required: true
-          description: The quality of the time series data point. Valid valid are GOOD, BAD, UNCERTAIN
-          example: GOOD
         min:
           type: string
-          required: false
           description: The minimum value of the time series over a time interval window.
           example: ' 7.0'
         max:
           type: string
-          required: false
           description: The maximum value of the time series over a time interval window.
           example: ' 7.0'
         average:
           type: string
-          required: false
           description: The average value of the time series over a time interval window.
           example: ' 7.0'
         count:
           type: string
-          required: false
           description: The count of data points in the time series over a time interval window.
           example: ' 7.0'
         sum:
           type: string
-          required: false
           description: The sum of the time series over a time interval window.
           example: ' 7.0'
         standard_deviation:
           type: string
-          required: false
           description: The standard deviation of the time series over a time interval window..
           example: ' 7.0'
     TimeSeriesItems:
@@ -516,7 +562,6 @@ components:
         - id
         - name
         - type
-        - unit
         - created_at
         - updated_at
       properties:
@@ -539,25 +584,24 @@ components:
           example: 'kg/m3'
         created_at:
           type: string
-          description: The timestamp when the measurement
+          description: The timestamp when the time series was created.
           format: date-time
           example: '2021-08-29T09:12:30.001Z'
         updated_at:
           type: string
+          description: The timestamp when the time series was last updated.
           format: date-time
           example: '2021-08-29T09:13:00.001Z'
     Metadata:
       type: object
-      description: Contains information about number of time series returned and pagination details.
+      description: Contains information about number results returned and pagination details.
       properties:
         total_count:
           type: integer
-          required: false
-          description: The number of time series returned in the response.
+          description: The number of results returned in the response.
           example: 50
         next_token:
           type: string
-          required: false
           description: 'An encoded value that can be used in the subsequent request in the pagination_token to return the next page of results. Only returned in the respone if there are more results available.'
           example: '77qpw8c'
   securitySchemes:
@@ -573,7 +617,8 @@ components:
             - Fn::Sub: ${AppClient}
             - Fn::Sub: ${AppClientGB}
             - Fn::Sub: ${AppClientELC}
-            - Fn::Sub: ${AppClientNA}            
+            - Fn::Sub: ${AppClientNA}
+            - Fn::Sub: ${AppClientRAM}
         identitySource: "$request.header.Authorization"
   x-amazon-apigateway-integrations:
     TimeSeriesSiteServiceLambdaIntegration:
@@ -585,4 +630,4 @@ components:
       uri:
         Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeSeriesSiteServiceLambdaArn}/invocations
       connectionType: "INTERNET"
-      passthroughBehavior: when_no_templates              
+      passthroughBehavior: when_no_templates
