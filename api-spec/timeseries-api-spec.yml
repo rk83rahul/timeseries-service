@@ -228,7 +228,7 @@ paths:
     get:
       tags:
         - Time Series
-      summary: List data point aggregates
+      summary: List aggregated data points
       operationId: getTimeSerieAggregates
       description: Returns a list aggregated valuse for a specific time series.
       x-amazon-apigateway-integration:
